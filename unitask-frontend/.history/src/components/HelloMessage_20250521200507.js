@@ -16,7 +16,7 @@ export default function HelloMessage() {
 
   return (
     <div style={{ fontFamily: "Arial", fontSize: "24px", padding: "20px" }}>
-      {message ? message : "Loading..."}
+      <button class="btn btn-danger">Hello im bootstrap button</button>
     </div>
   );
 }
