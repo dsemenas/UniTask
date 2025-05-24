@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UniTask_backend.Persistence;
@@ -11,9 +12,11 @@ using UniTask_backend.Persistence;
 namespace UniTask_backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250524071326_AddGroupEntity")]
+    partial class AddGroupEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,17 +43,6 @@ namespace UniTask_backend.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("UniTask_backend.Entities.GroupUser", b =>
-                {
-                    b.Property<Guid>("GroupId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.ToTable("GroupUsers");
                 });
 
             modelBuilder.Entity("UniTask_backend.Entities.User", b =>
