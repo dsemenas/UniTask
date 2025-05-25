@@ -1,0 +1,377 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\dto\\addmemberstogrouprequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\dto\\addmemberstogrouprequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\interfaces\\igroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\interfaces\\igroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\dto\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\dto\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\persistence\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\dto\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\dto\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\entities\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\entities\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\dto\\addgroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\dto\\addgroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\entities\\groupuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\entities\\groupuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\dto\\groupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\dto\\groupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\dto\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\dto\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|c:\\users\\ms\\source\\repos\\unitask\\unitask-backend\\unitask-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AC7BE188-9945-4C67-BB90-456B86D4E7CE}|UniTask-backend\\UniTask-backend.csproj|solutionrelative:unitask-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRegisterDTO.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\UserRegisterDTO.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\DTO\\UserRegisterDTO.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\UserRegisterDTO.cs",
+              "RelativeToolTip": "UniTask-backend\\DTO\\UserRegisterDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T16:52:35.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\DTO\\ApiResponse.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\ApiResponse.cs",
+              "RelativeToolTip": "UniTask-backend\\DTO\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:23:31.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GroupService.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Services\\GroupService.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Services\\GroupService.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Services\\GroupService.cs",
+              "RelativeToolTip": "UniTask-backend\\Services\\GroupService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAkwFAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:16:54.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "UniTask-backend\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T13:35:42.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Controllers\\GroupController.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Controllers\\GroupController.cs*",
+              "RelativeToolTip": "UniTask-backend\\Controllers\\GroupController.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:11:45.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddMembersToGroupRequest.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\AddMembersToGroupRequest.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\DTO\\AddMembersToGroupRequest.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\AddMembersToGroupRequest.cs",
+              "RelativeToolTip": "UniTask-backend\\DTO\\AddMembersToGroupRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T17:16:05.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IGroupService.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Interfaces\\IGroupService.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Interfaces\\IGroupService.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Interfaces\\IGroupService.cs",
+              "RelativeToolTip": "UniTask-backend\\Interfaces\\IGroupService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:15:40.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AddGroupDTO.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\AddGroupDTO.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\DTO\\AddGroupDTO.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\AddGroupDTO.cs",
+              "RelativeToolTip": "UniTask-backend\\DTO\\AddGroupDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:23:19.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Persistence\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Persistence\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Persistence\\AppDbContext.cs",
+              "RelativeToolTip": "UniTask-backend\\Persistence\\AppDbContext.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:40:41.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Group.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Entities\\Group.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Entities\\Group.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Entities\\Group.cs",
+              "RelativeToolTip": "UniTask-backend\\Entities\\Group.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:01:28.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Entities\\User.cs",
+              "RelativeToolTip": "UniTask-backend\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:03:24.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GroupUser.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Entities\\GroupUser.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Entities\\GroupUser.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Entities\\GroupUser.cs",
+              "RelativeToolTip": "UniTask-backend\\Entities\\GroupUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:06:34.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Interfaces\\IUserService.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "UniTask-backend\\Interfaces\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:15:53.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Services\\AuthService.cs",
+              "RelativeToolTip": "UniTask-backend\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:27:33.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Services\\UserService.cs",
+              "RelativeToolTip": "UniTask-backend\\Services\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:17:09.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Program.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Program.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Program.cs",
+              "RelativeToolTip": "UniTask-backend\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T13:40:43.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Interfaces\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "UniTask-backend\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:15:22.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GroupDTO.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\GroupDTO.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\DTO\\GroupDTO.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\GroupDTO.cs",
+              "RelativeToolTip": "UniTask-backend\\DTO\\GroupDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:50:28.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserLoginDTO.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\UserLoginDTO.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\DTO\\UserLoginDTO.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\DTO\\UserLoginDTO.cs",
+              "RelativeToolTip": "UniTask-backend\\DTO\\UserLoginDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:23:33.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "UniTask-backend\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\Controllers\\UserController.cs",
+              "RelativeToolTip": "UniTask-backend\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T14:11:49.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\appsettings.json",
+              "RelativeDocumentMoniker": "UniTask-backend\\appsettings.json",
+              "ToolTip": "C:\\Users\\MS\\source\\repos\\UniTask\\UniTask-backend\\UniTask-backend\\appsettings.json",
+              "RelativeToolTip": "UniTask-backend\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-25T13:28:10.266Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
