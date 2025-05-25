@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="px-2 py-2">
-        <span>Kraunasi...</span>
+        <h5>Kraunasi...</h5>
       </div>
     );
   }

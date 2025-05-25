@@ -42,7 +42,7 @@ export default function WorkSpacePage() {
         // Optionally do something with data.data here
       } else {
         // Show error messages array or fallback error
-        setErrors([data.errors] || ["Įvyko nežinoma klaida"]);
+        setErrors(data.errors || ["Įvyko nežinoma klaida"]);
       }
     } catch (error) {
       setErrors(["Tinklo klaida, bandykite dar kartą..."]);
