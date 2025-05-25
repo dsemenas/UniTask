@@ -6,9 +6,10 @@ const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   if (loading) {
+    // kol kraunasi user info, galima rodyti kokį loading arba tuščią fragmentą
     return (
       <div className="px-2 py-2">
-        <span>Kraunasi...</span>
+        <h5>Kraunasi...</h5>
       </div>
     );
   }
