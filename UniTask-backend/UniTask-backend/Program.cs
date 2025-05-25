@@ -43,6 +43,8 @@ builder.Services.AddAuthentication(opt =>
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
+
 
 builder.Services.AddAuthorization();    
 builder.Services.AddControllers();
