@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MS\\Source\\Repos\\UniTask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj": {}
+    "C:\\Users\\MS\\Documents\\Unikas\\Unitask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MS\\Source\\Repos\\UniTask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj": {
+    "C:\\Users\\MS\\Documents\\Unikas\\Unitask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MS\\Source\\Repos\\UniTask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj",
+        "projectUniqueName": "C:\\Users\\MS\\Documents\\Unikas\\Unitask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj",
         "projectName": "UniTask-backend",
-        "projectPath": "C:\\Users\\MS\\Source\\Repos\\UniTask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj",
+        "projectPath": "C:\\Users\\MS\\Documents\\Unikas\\Unitask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj",
         "packagesPath": "C:\\Users\\MS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MS\\Source\\Repos\\UniTask\\UniTask-backend\\UniTask-backend\\obj\\",
+        "outputPath": "C:\\Users\\MS\\Documents\\Unikas\\Unitask\\UniTask-backend\\UniTask-backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

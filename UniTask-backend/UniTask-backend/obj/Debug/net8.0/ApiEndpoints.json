@@ -80,6 +80,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "UniTask_backend.Controllers.TaskController",
+    "Method": "AddTask",
+    "RelativePath": "api/Task/create-task",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "info",
+        "Type": "UniTask_backend.DTO.CreateTaskDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "UniTask_backend.Controllers.UserController",
     "Method": "GetCurrentUser",
     "RelativePath": "api/User/me",
