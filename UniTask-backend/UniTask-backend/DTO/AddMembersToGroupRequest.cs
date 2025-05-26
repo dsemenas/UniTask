@@ -2,7 +2,7 @@
 {
     public class AddMembersToGroupRequest
     {
-        public Guid UserId { get; set; }
+        public string Username { get; set; }
 
         public Guid GroupId { get; set; }
     }

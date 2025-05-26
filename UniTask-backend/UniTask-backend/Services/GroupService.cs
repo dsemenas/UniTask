@@ -16,7 +16,7 @@ namespace UniTask_backend.Services
             _context = context;
         }
 
-        public (bool Success, string? ErrorMessage, Guid? GroupId) CreateGroup(string name, Guid ownerId)
+        public (bool Success, string? ErrorMessage, Guid? GroupId) CreateGroup(string name, string ownerName)
         {
             try
             {
@@ -24,13 +24,14 @@ namespace UniTask_backend.Services
                     return (false, "Group name cannot be empty.", null);
 
                 // Sukuriame naują grupę
-                var newGroup = new Entities.Group(name, ownerId);
+                var owner = _context.Users.FirstOrDefault(u => u.Username == ownerName);
+                var newGroup = new Entities.Group(name, owner.Id);
 
                 // Pirmiausia įrašome grupę, kad Id būtų patvirtintas
                 _context.Groups.Add(newGroup);
                 _context.SaveChanges();
 
-                var response = AddMemberToGroup(ownerId, newGroup.Id);
+                var response = AddMemberToGroup(ownerName, newGroup.Id);
                 
                 if (response.Success == true)
                     return (true, null, newGroup.Id);
@@ -44,21 +45,23 @@ namespace UniTask_backend.Services
             }
         }
 
-        public (bool Success, string? ErrorMessage) AddMemberToGroup(Guid userId, Guid groupId)
+        public (bool Success, string? ErrorMessage) AddMemberToGroup(string username, Guid groupId)
         {
             try
             {
-                // Patikrinam, ar grupė egzistuoja
+                // Check if the group exists
                 var groupExists = _context.Groups.Any(g => g.Id == groupId);
                 if (!groupExists)
                     return (false, "Group not found.");
 
-                // Patikrinam, ar vartotojas egzistuoja
-                var userExists = _context.Users.Any(u => u.Id == userId);
-                if (!userExists)
+                // Find user by username
+                var user = _context.Users.FirstOrDefault(u => u.Username == username);
+                if (user == null)
                     return (false, "User not found.");
 
-                // Patikrinam, ar vartotojas jau yra grupės narys
+                var userId = user.Id;
+
+                // Check if the user is already a member of the group
                 var membershipExists = _context.GroupUsers.Any(gu => gu.UserId == userId && gu.GroupId == groupId);
                 if (membershipExists)
                     return (false, "User is already a member of the group.");
@@ -66,7 +69,7 @@ namespace UniTask_backend.Services
                 var membership = new GroupUser(userId, groupId);
                 _context.GroupUsers.Add(membership);
 
-                // Išsaugome narystės įrašą
+                // Save the membership record
                 _context.SaveChanges();
 
                 return (true, null);
@@ -76,8 +79,6 @@ namespace UniTask_backend.Services
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
                 return (false, "Unable to add member: " + innerMessage);
             }
-        
-
         }
 
         public (bool Success, string? ErrorMessage, List<GroupDTO> Groups) GetGroupsByUserId(Guid userId)
