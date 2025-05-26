@@ -14,6 +14,8 @@ public class AppDbContext : DbContext
 
     public DbSet<GroupUser> GroupUsers { get; set; }
 
+    public DbSet<Entities.Task>Tasks { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

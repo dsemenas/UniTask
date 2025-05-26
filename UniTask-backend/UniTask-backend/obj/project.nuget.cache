@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O60Ce1obyMI=",
+  "dgSpecHash": "sKet0wA4wAE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\MS\\Source\\Repos\\UniTask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj",
+  "projectFilePath": "C:\\Users\\MS\\Documents\\Unikas\\Unitask\\UniTask-backend\\UniTask-backend\\UniTask-backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MS\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\MS\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.16\\microsoft.aspnetcore.authentication.jwtbearer.8.0.16.nupkg.sha512",
