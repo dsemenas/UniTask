@@ -11,6 +11,7 @@ import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./pages/NotFoundPage";
 import WorkSpacePage from "./pages/WorkSpacePage";
 import ProtectedRoute from "./Routes/ProtectedRoute";
+import GroupPage from "./pages/GroupPage";
 
 function App() {
   return (
@@ -21,6 +22,14 @@ function App() {
           element={
             <ProtectedRoute>
               <WorkSpacePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group/:groupID"
+          element={
+            <ProtectedRoute>
+              <GroupPage />
             </ProtectedRoute>
           }
         />

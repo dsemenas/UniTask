@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UniTask_backend.DTO;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Services;
@@ -7,6 +8,7 @@ namespace UniTask_backend.Controllers
 {
     [Controller]
     [Route("api/[controller]")]
+    [Authorize]
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UniTask_backend.DTO;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Services;
@@ -7,6 +8,7 @@ namespace UniTask_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class GroupController : ControllerBase
     {
         private readonly IGroupService _groupService;
@@ -21,7 +23,7 @@ namespace UniTask_backend.Controllers
         {
             try
             {
-                var (success, errorMessage, groupId) = _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerId);
+                var (success, errorMessage, groupId) = _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerName);
 
                 if (!success)
                     return BadRequest(new ApiResponse<string>
@@ -44,7 +46,7 @@ namespace UniTask_backend.Controllers
         [HttpPost("add-members")]
         public IActionResult AddMembers([FromBody] AddMembersToGroupRequest request)
         {
-            var (success, error) =  _groupService.AddMemberToGroup(request.UserId, request.GroupId);
+            var (success, error) =  _groupService.AddMemberToGroup(request.Username, request.GroupId);
 
             if (!success)
                 return BadRequest(new ApiResponse<string>

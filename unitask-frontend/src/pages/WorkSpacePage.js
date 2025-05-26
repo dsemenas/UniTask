@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Logout from "../components/Logout";
+import { Link } from "react-router-dom";
 
 export default function WorkSpacePage() {
   const { logout, user, token } = useContext(AuthContext);
@@ -8,7 +9,12 @@ export default function WorkSpacePage() {
   const [groupName, setGroupName] = useState("");
   const [isLoading, setIsLoading] = useState("");
   const [errors, setErrors] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleAddGroup = async (e) => {
     e.preventDefault();
@@ -25,24 +31,35 @@ export default function WorkSpacePage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://your-api-url.com/groups", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ groupName }),
-      });
+      const response = await fetch(
+        "http://localhost:5159/api/Group/create-group",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ Name: groupName, OwnerName: user.username }),
+        }
+      );
 
       const data = await response.json();
 
       if (data.success) {
         // Group created successfully
-        setSuccessMessage("Grupė sėkmingai sukurta!");
+        setSuccessMessage(
+          "Grupė sėkmingai sukurta! Galite ją matyti tarp kitų grupių sąrašo."
+        );
+        setGroupName("");
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 3000);
+        fetchData();
         // Optionally do something with data.data here
       } else {
         // Show error messages array or fallback error
-        setErrors([data.errors] || ["Įvyko nežinoma klaida"]);
+        console.log(data.errors);
+        setErrors([...data.errors] || ["Įvyko nežinoma klaida"]);
       }
     } catch (error) {
       setErrors(["Tinklo klaida, bandykite dar kartą..."]);
@@ -51,18 +68,54 @@ export default function WorkSpacePage() {
     }
   };
 
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:5159/api/Group/user/${user.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      const result = await response.json();
+      setData(result.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div>
+      {successMessage && (
+        <div className="alert alert-success text-center fw-bold" role="alert">
+          {successMessage}
+        </div>
+      )}
       <Logout />
       <div className="mt-5 px-5">
         <h1 className="text-center">Darbo aplinka</h1>
         <div className="mt-5">
           <h3>Esamos grupės</h3>
           <ul className="list-group list-group-flush mt-3 fs-5 w-25">
-            <li className="list-group-item">Grupė_nr.4</li>
-            <li className="list-group-item">Grupė_nr.4</li>{" "}
-            <li className="list-group-item">Grupė_nr.4</li>{" "}
-            <li className="list-group-item">Grupė_nr.4</li>
+            {data.length != 0 ? (
+              data.map((d, i) => (
+                <li className="list-group-item" key={i}>
+                  <Link to={`/group/${d.id}`}>{d.name}</Link>
+                </li>
+              ))
+            ) : (
+              <span>
+                Šiuo metu nesate priskirtas jokiai grupei... Gal norėtumėte
+                sukurti naują?
+              </span>
+            )}
           </ul>
         </div>
         <div className="mt-5">
