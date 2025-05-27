@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 using Npgsql.Replication.PgOutput.Messages;
 using UniTask_backend.DTO;
 using UniTask_backend.Entities;
@@ -94,17 +95,34 @@ namespace UniTask_backend.Services
                     })
                     .ToList();
 
-                if (groups is null)
-                {
-                    return (true, null, new List<GroupDTO>());
-                }
-
                 return (true, null, groups);
             }
             catch (Exception ex)
             {
                 // Optionally log ex.Message
                 return (false, "Unable to retrieve groups.", new List<GroupDTO>());
+            }
+        }
+
+        public (bool Success, string? ErrorMessage, List<GetUsersDTO> users) GetMembers(Guid groupId)
+        {
+            try
+            {
+                var users = _context.GroupUsers
+                    .Include(gu => gu.User)  // load User navigation property
+                    .Where(gu => gu.GroupId == groupId)
+                    .Select(gu => new GetUsersDTO 
+                    { 
+                        Username = gu.User.Username 
+                    })
+                    .ToList();
+
+                return (true, null, users);
+            }
+            catch (Exception ex)
+            {
+                // Optionally log ex.Message
+                return (false, "Unable to retrieve members.", new List<GetUsersDTO>());
             }
         }
 
