@@ -1,8 +1,6 @@
-
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.Replication.PgOutput.Messages;
-
 using UniTask_backend.DTO;
 using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
@@ -19,28 +17,27 @@ namespace UniTask_backend.Services
             _context = context;
         }
 
-
-        public async Task<(bool Success, string? ErrorMessage, Guid? GroupId)> CreateGroup(string name, Guid ownerId)
-
+        public (bool Success, string? ErrorMessage, Guid? GroupId) CreateGroup(string name, string ownerName)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(name))
                     return (false, "Group name cannot be empty.", null);
 
+                // Sukuriame naują grupę
+                var owner = _context.Users.FirstOrDefault(u => u.Username == ownerName);
+                var newGroup = new Entities.Group(name, owner.Id);
 
-                var newGroup = new Group(name, ownerId);
-
+                // Pirmiausia įrašome grupę, kad Id būtų patvirtintas
                 _context.Groups.Add(newGroup);
+                _context.SaveChanges();
 
+                var response = AddMemberToGroup(ownerName, newGroup.Id);
+                
+                if (response.Success == true)
+                    return (true, null, newGroup.Id);
 
-                var membership = new GroupUser(ownerId, newGroup.Id);
-                _context.GroupUsers.Add(membership);
-
-
-
-                await _context.SaveChangesAsync();
-                return (true, null, newGroup.Id);
+                return (false, "Unable to add Owner as member", null);
             }
             catch (Exception ex)
             {
@@ -49,29 +46,32 @@ namespace UniTask_backend.Services
             }
         }
 
-
-        public async Task<(bool Success, string? ErrorMessage)> AddMemberToGroup(Guid userId, Guid groupId)
+        public (bool Success, string? ErrorMessage) AddMemberToGroup(string username, Guid groupId)
         {
             try
             {
-                var groupExists = await _context.Groups.AnyAsync(g => g.Id == groupId);
+                // Check if the group exists
+                var groupExists = _context.Groups.Any(g => g.Id == groupId);
                 if (!groupExists)
                     return (false, "Group not found.");
 
-                var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
-                if (!userExists)
+                // Find user by username
+                var user = _context.Users.FirstOrDefault(u => u.Username == username);
+                if (user == null)
                     return (false, "User not found.");
 
-                var membershipExists = await _context.GroupUsers.AnyAsync(gu => gu.UserId == userId && gu.GroupId == groupId);
+                var userId = user.Id;
 
+                // Check if the user is already a member of the group
+                var membershipExists = _context.GroupUsers.Any(gu => gu.UserId == userId && gu.GroupId == groupId);
                 if (membershipExists)
                     return (false, "User is already a member of the group.");
 
                 var membership = new GroupUser(userId, groupId);
                 _context.GroupUsers.Add(membership);
 
-
-                await _context.SaveChangesAsync();
+                // Save the membership record
+                _context.SaveChanges();
 
                 return (true, null);
             }
@@ -82,30 +82,27 @@ namespace UniTask_backend.Services
             }
         }
 
-        public async Task<(bool Success, string? ErrorMessage, List<GroupDTO> Groups)> GetGroupsByUserId(Guid userId)
+        public (bool Success, string? ErrorMessage, List<GroupDTO> Groups) GetGroupsByUserId(Guid userId)
         {
             try
             {
-                var groups = await _context.Groups
+                var groups = _context.Groups
                     .Where(g => g.Members.Any(m => m.UserId == userId))
                     .Select(g => new GroupDTO
                     {
                         Id = g.Id,
                         Name = g.Name
                     })
-
-                    .ToListAsync();
-
-
+                    .ToList();
 
                 return (true, null, groups);
             }
             catch (Exception ex)
             {
-                return (false, "Unable to retrieve groups: " + ex.Message, new List<GroupDTO>());
+                // Optionally log ex.Message
+                return (false, "Unable to retrieve groups.", new List<GroupDTO>());
             }
         }
-
 
         public (bool Success, string? ErrorMessage, List<GetUsersDTO> users) GetMembers(Guid groupId)
         {

@@ -1,8 +1,6 @@
 using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Persistence;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace UniTask_backend.Services;
 
@@ -15,8 +13,8 @@ public class UserService : IUserService
         _context = context;
     }
 
-    public async Task<User?> GetCurrentUser(Guid userId)
+    public User? GetCurrentUser(Guid userId)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        return _context.Users.FirstOrDefault(u => u.Id == userId);
     }
 }

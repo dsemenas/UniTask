@@ -2,16 +2,15 @@
 {
     public interface ITaskService
     {
-        Task<(bool Success, string? ErrorMessage, Guid? TaskId)> CreateTask(string description, Guid groupId, string username, TaskStatus status);
+        (bool Success, string? ErrorMessage, Guid? TaskId) CreateTask(string name, string description, Guid userId, TaskStatus status);
 
-        Task<(bool Success, string? ErrorMessage, List<Entities.Task>? tasks)> GetTasks(Guid groupId);
+        (bool Success, string? ErrorMessage) AssignMemberToTask(Guid userId, Guid taskId);
 
-        Task<(bool Success, string? ErrorMessage)> AssignMemberToTask(Guid userId, Guid taskId);
+        (bool Success, string? ErrorMessage) DeleteTask(Guid taskId);
 
-        Task<(bool Success, string? ErrorMessage)> DeleteTask(Guid taskId);
-
-        Task<(bool Success, string? ErrorMessage)> UpdateTask(
+        public (bool Success, string? ErrorMessage) UpdateTask(
         Guid taskId,
+        string? newName = null,
         string? newDescription = null,
         Guid? newUserId = null,
         TaskStatus? newStatus = null);

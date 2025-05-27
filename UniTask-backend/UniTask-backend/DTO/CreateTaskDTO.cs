@@ -2,12 +2,11 @@
 {
     public class CreateTaskDTO
     {
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public Guid GroupId { get; set; }
-
-        public string Username { get; set; }
+        public Guid UserId { get; set; }
 
         public TaskStatus Status { get; set; }
     }

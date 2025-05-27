@@ -4,19 +4,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using UniTask_backend.Entities;
-using UniTask_backend.Interceptors;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Persistence;
 using UniTask_backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IUserContext, UserContext>();
-builder.Services.AddSingleton<IUserContext, UserContext>();
-builder.Services.AddTransient<ITaskService, TaskService>();
-builder.Services.AddTransient<LoggingInterceptor>();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 // JWT
 var jwtSettings = builder.Configuration.GetSection("Jwt");
