@@ -20,11 +20,11 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpPost("create-group")]
-        public IActionResult AddGroup([FromBody] AddGroupDTO groupInfo)
+        public async Task<IActionResult> AddGroup([FromBody] AddGroupDTO groupInfo)
         {
             try
             {
-                var (success, errorMessage, groupId) = _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerName);
+                var (success, errorMessage, groupId) = await _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerName);
 
                 if (!success)
                     return BadRequest(new ApiResponse<string>
@@ -45,9 +45,9 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpPost("add-members")]
-        public IActionResult AddMembers([FromBody] AddMembersToGroupRequest request)
+        public async Task<IActionResult> AddMembers([FromBody] AddMembersToGroupRequest request)
         {
-            var (success, error) =  _groupService.AddMemberToGroup(request.Username, request.GroupId);
+            var (success, error) =  await _groupService.AddMemberToGroup(request.Username, request.GroupId);
 
             if (!success)
                 return BadRequest(new ApiResponse<string>
@@ -58,9 +58,9 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public IActionResult GetGroupsByUserId(Guid userId)
+        public async Task<IActionResult> GetGroupsByUserId(Guid userId)
         {
-            var (success, errorMessage, groups) = _groupService.GetGroupsByUserId(userId);
+            var (success, errorMessage, groups) = await _groupService.GetGroupsByUserId(userId);
 
             if (!success)
             {
@@ -79,9 +79,9 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpGet("get-members/{groupId}")]
-        public IActionResult GetMembers(Guid groupId)
+        public async Task<IActionResult> GetMembers(Guid groupId)
         {
-            var (success, errorMessage, users) = _groupService.GetMembers(groupId);
+            var (success, errorMessage, users) = await _groupService.GetMembers(groupId);
 
             if (!success)
             {
