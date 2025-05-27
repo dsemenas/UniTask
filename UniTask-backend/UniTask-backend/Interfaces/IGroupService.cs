@@ -5,13 +5,12 @@ namespace UniTask_backend.Interfaces
 {
     public interface IGroupService
     {
+        (bool Success, string? ErrorMessage, Guid? GroupId) CreateGroup(string name, string ownerName);
 
-        Task<(bool Success, string? ErrorMessage, Guid? GroupId)> CreateGroup(string name, Guid ownerId);
+        (bool Success, string? ErrorMessage) AddMemberToGroup(string username, Guid groupId);
 
-        Task<(bool Success, string? ErrorMessage)> AddMemberToGroup(Guid userId, Guid groupId);
-
-        Task<(bool Success, string? ErrorMessage, List<GroupDTO> Groups)> GetGroupsByUserId(Guid userId);
-
+        (bool Success, string? ErrorMessage, List<GroupDTO> Groups) GetGroupsByUserId(Guid userId);
         
+        (bool Success, string? ErrorMessage, List<GetUsersDTO> users) GetMembers(Guid groupId);
     }
 }
