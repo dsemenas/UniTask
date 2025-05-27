@@ -1,4 +1,5 @@
-﻿using UniTask_backend.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Persistence;
 
@@ -7,7 +8,6 @@ namespace UniTask_backend.Services
     public class TaskService : ITaskService
     {
         private readonly AppDbContext _context;
-
         private readonly ILogger<TaskService> _logger;
 
         public TaskService(AppDbContext context, ILogger<TaskService> logger)
@@ -16,73 +16,85 @@ namespace UniTask_backend.Services
             _logger = logger;
         }
 
-        public (bool Success, string? ErrorMessage, Guid? TaskId) CreateTask(string name, string description, Guid userId, TaskStatus status)
+        public async Task<(bool Success, string? ErrorMessage, Guid? TaskId)> CreateTask(
+            string description, Guid groupId, string username, TaskStatus status)
         {
-            _logger.LogInformation("New Task is being created: {TaskName}", name);
             try
             {
-                if (string.IsNullOrWhiteSpace(name))
-                    return (false, "task name cannot be empty.", null);
+                if (string.IsNullOrWhiteSpace(description))
+                    return (false, "Task name cannot be empty.", null);
 
-                var newTask = new Entities.Task(name, description, userId, status);
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+                if (user == null)
+                    return (false, "User not found.", null);
 
+                var newTask = new Entities.Task(description, groupId, user.Id, status);
 
-                _context.Tasks.Add(newTask);
-                _context.SaveChanges();
+                await _context.Tasks.AddAsync(newTask);
+                await _context.SaveChangesAsync();
 
-               
                 return (true, null, newTask.Id);
-               
-
             }
             catch (Exception ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
-                _logger.LogError(ex, "Klaida kuriant užduotį: {Message}", innerMessage);
                 return (false, "Unable to create task: " + innerMessage, null);
             }
         }
 
-        public (bool Success, string? ErrorMessage) AssignMemberToTask(Guid userId, Guid taskId)
+        public async Task<(bool Success, string? ErrorMessage, List<Entities.Task>? tasks)> GetTasks(Guid groupId)
         {
             try
             {
- 
-                var task = _context.Tasks.Find(taskId);
+                var tasks = await _context.Tasks
+                    .Where(t => t.GroupId == groupId)
+                    .ToListAsync();
+
+                return (true, null, tasks);
+            }
+            catch (Exception)
+            {
+                return (false, "An error occurred while retrieving tasks.", null);
+            }
+        }
+
+        public async Task<(bool Success, string? ErrorMessage)> AssignMemberToTask(Guid userId, Guid taskId)
+        {
+            try
+            {
+                var task = await _context.Tasks.FindAsync(taskId);
                 if (task == null)
                     return (false, "Task not found.");
 
-                var user = _context.Users.Find(userId);
+                var user = await _context.Users.FindAsync(userId);
                 if (user == null)
                     return (false, "User not found.");
 
                 if (task.UserId == userId)
-                    return (false, "User is already assigned");
+                    return (false, "User is already assigned.");
 
                 task.UserId = userId;
-
-                // Išsaugome narystės įrašą
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return (true, null);
             }
             catch (Exception ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
-                return (false, "Unable to assign user " + innerMessage);
+                return (false, "Unable to assign user: " + innerMessage);
             }
         }
 
-        public (bool Success, string? ErrorMessage) DeleteTask(Guid taskId)
+        public async Task<(bool Success, string? ErrorMessage)> DeleteTask(Guid taskId)
         {
             try
             {
-                var task = _context.Tasks.Find(taskId);
+                var task = await _context.Tasks.FindAsync(taskId);
                 if (task == null)
                     return (false, "Task not found.");
 
                 _context.Tasks.Remove(task);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return (true, null);
             }
@@ -93,22 +105,17 @@ namespace UniTask_backend.Services
             }
         }
 
-        public (bool Success, string? ErrorMessage) UpdateTask(
-        Guid taskId,
-        string? newName = null,
-        string? newDescription = null,
-        Guid? newUserId = null,
-        TaskStatus? newStatus = null)
+        public async Task<(bool Success, string? ErrorMessage)> UpdateTask(
+            Guid taskId,
+            string? newDescription = null,
+            Guid? newUserId = null,
+            TaskStatus? newStatus = null)
         {
-
             try
             {
-                var task = _context.Tasks.Find(taskId);
+                var task = await _context.Tasks.FindAsync(taskId);
                 if (task == null)
                     return (false, "Task not found.");
-
-                if (newName != null)
-                    task.Name = newName;
 
                 if (newDescription != null)
                     task.Description = newDescription;
@@ -118,29 +125,22 @@ namespace UniTask_backend.Services
 
                 if (newUserId.HasValue)
                 {
-                    var user = _context.Users.Find(newUserId.Value);
+                    var user = await _context.Users.FindAsync(newUserId.Value);
                     if (user == null)
                         return (false, "User not found.");
 
                     task.UserId = newUserId.Value;
                 }
 
-
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return (true, null);
             }
-
             catch (Exception ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
                 return (false, "Unable to update task: " + innerMessage);
             }
-
         }
-            
-
-
-
     }
 }
