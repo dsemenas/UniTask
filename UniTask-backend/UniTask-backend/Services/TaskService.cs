@@ -1,4 +1,6 @@
-﻿using UniTask_backend.Entities;
+﻿using System.Xml.Linq;
+using Microsoft.EntityFrameworkCore;
+using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Persistence;
 
@@ -16,15 +18,21 @@ namespace UniTask_backend.Services
             _logger = logger;
         }
 
-        public (bool Success, string? ErrorMessage, Guid? TaskId) CreateTask(string name, string description, Guid userId, TaskStatus status)
+        public (bool Success, string? ErrorMessage, Guid? TaskId) CreateTask( string description,Guid groupId, string username, TaskStatus status)
         {
-            _logger.LogInformation("New Task is being created: {TaskName}", name);
+
             try
             {
-                if (string.IsNullOrWhiteSpace(name))
+                if (string.IsNullOrWhiteSpace(description))
                     return (false, "task name cannot be empty.", null);
 
-                var newTask = new Entities.Task(name, description, userId, status);
+
+                var user = _context.Users.FirstOrDefault(u => u.Username == username);
+                if (user == null)
+                {
+                    return (false, "User not found", null);
+                }
+                var newTask = new Entities.Task(description, groupId, user.Id, status);
 
 
                 _context.Tasks.Add(newTask);
@@ -38,8 +46,29 @@ namespace UniTask_backend.Services
             catch (Exception ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
-                _logger.LogError(ex, "Klaida kuriant užduotį: {Message}", innerMessage);
                 return (false, "Unable to create task: " + innerMessage, null);
+            }
+
+
+        }
+
+
+        public (bool Success, string? ErrorMessage, List<Entities.Task>? tasks) getTasks(Guid groupId)
+        {
+            try
+            {
+                
+
+                var tasks = _context.Tasks
+                    .Where(t => t.GroupId == groupId)
+                    .ToList();
+
+                return (true, null, tasks);
+            }
+            catch (Exception ex)
+            {
+                // Log the error if needed
+                return (false, "An error occurred while retrieving tasks.", null);
             }
         }
 
@@ -95,7 +124,6 @@ namespace UniTask_backend.Services
 
         public (bool Success, string? ErrorMessage) UpdateTask(
         Guid taskId,
-        string? newName = null,
         string? newDescription = null,
         Guid? newUserId = null,
         TaskStatus? newStatus = null)
@@ -107,8 +135,8 @@ namespace UniTask_backend.Services
                 if (task == null)
                     return (false, "Task not found.");
 
-                if (newName != null)
-                    task.Name = newName;
+                //_context.Entry(task).Property("Version").OriginalValue = rowVersion;
+
 
                 if (newDescription != null)
                     task.Description = newDescription;
@@ -130,7 +158,6 @@ namespace UniTask_backend.Services
 
                 return (true, null);
             }
-
             catch (Exception ex)
             {
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;

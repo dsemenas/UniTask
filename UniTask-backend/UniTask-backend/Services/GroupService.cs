@@ -28,14 +28,13 @@ namespace UniTask_backend.Services
 
                 // Pirmiausia įrašome grupę, kad Id būtų patvirtintas
                 _context.Groups.Add(newGroup);
+
+                var membership = new GroupUser(ownerId, newGroup.Id);
+                _context.GroupUsers.Add(membership);
                 _context.SaveChanges();
+                return (true, null, newGroup.Id);
 
-                var response = AddMemberToGroup(ownerId, newGroup.Id);
-                
-                if (response.Success == true)
-                    return (true, null, newGroup.Id);
-
-                return (false, "Unable to add Owner as member", null);
+           
             }
             catch (Exception ex)
             {
