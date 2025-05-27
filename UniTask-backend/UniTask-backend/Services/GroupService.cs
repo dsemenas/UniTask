@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+
+using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
+using Npgsql.Replication.PgOutput.Messages;
+
 using UniTask_backend.DTO;
 using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
@@ -15,18 +19,25 @@ namespace UniTask_backend.Services
             _context = context;
         }
 
+
         public async Task<(bool Success, string? ErrorMessage, Guid? GroupId)> CreateGroup(string name, Guid ownerId)
+
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(name))
                     return (false, "Group name cannot be empty.", null);
 
+
                 var newGroup = new Group(name, ownerId);
+
                 _context.Groups.Add(newGroup);
+
 
                 var membership = new GroupUser(ownerId, newGroup.Id);
                 _context.GroupUsers.Add(membership);
+
+
 
                 await _context.SaveChangesAsync();
                 return (true, null, newGroup.Id);
@@ -37,6 +48,7 @@ namespace UniTask_backend.Services
                 return (false, "Unable to create group: " + innerMessage, null);
             }
         }
+
 
         public async Task<(bool Success, string? ErrorMessage)> AddMemberToGroup(Guid userId, Guid groupId)
         {
@@ -51,13 +63,16 @@ namespace UniTask_backend.Services
                     return (false, "User not found.");
 
                 var membershipExists = await _context.GroupUsers.AnyAsync(gu => gu.UserId == userId && gu.GroupId == groupId);
+
                 if (membershipExists)
                     return (false, "User is already a member of the group.");
 
                 var membership = new GroupUser(userId, groupId);
                 _context.GroupUsers.Add(membership);
 
+
                 await _context.SaveChangesAsync();
+
                 return (true, null);
             }
             catch (Exception ex)
@@ -78,7 +93,10 @@ namespace UniTask_backend.Services
                         Id = g.Id,
                         Name = g.Name
                     })
+
                     .ToListAsync();
+
+
 
                 return (true, null, groups);
             }
@@ -87,5 +105,29 @@ namespace UniTask_backend.Services
                 return (false, "Unable to retrieve groups: " + ex.Message, new List<GroupDTO>());
             }
         }
+
+
+        public (bool Success, string? ErrorMessage, List<GetUsersDTO> users) GetMembers(Guid groupId)
+        {
+            try
+            {
+                var users = _context.GroupUsers
+                    .Include(gu => gu.User)  // load User navigation property
+                    .Where(gu => gu.GroupId == groupId)
+                    .Select(gu => new GetUsersDTO 
+                    { 
+                        Username = gu.User.Username 
+                    })
+                    .ToList();
+
+                return (true, null, users);
+            }
+            catch (Exception ex)
+            {
+                // Optionally log ex.Message
+                return (false, "Unable to retrieve members.", new List<GetUsersDTO>());
+            }
+        }
+
     }
 }

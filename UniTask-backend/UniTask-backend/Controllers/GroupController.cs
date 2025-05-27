@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UniTask_backend.DTO;
+using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Services;
 
@@ -7,6 +9,7 @@ namespace UniTask_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class GroupController : ControllerBase
     {
         private readonly IGroupService _groupService;
@@ -21,7 +24,9 @@ namespace UniTask_backend.Controllers
         {
             try
             {
+
                 var (success, errorMessage, groupId) = await _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerId);
+                
 
                 if (!success)
                     return BadRequest(new ApiResponse<string>
@@ -44,7 +49,10 @@ namespace UniTask_backend.Controllers
         [HttpPost("add-members")]
         public async Task<IActionResult> AddMembers([FromBody] AddMembersToGroupRequest request)
         {
+
             var (success, error) = await _groupService.AddMemberToGroup(request.UserId, request.GroupId);
+
+            
 
             if (!success)
                 return BadRequest(new ApiResponse<string>
@@ -72,6 +80,27 @@ namespace UniTask_backend.Controllers
             {
                 Success = true,
                 Data = groups
+            });
+        }
+
+        [HttpGet("get-members/{groupId}")]
+        public IActionResult GetMembers(Guid groupId)
+        {
+            var (success, errorMessage, users) = _groupService.GetMembers(groupId);
+
+            if (!success)
+            {
+                return BadRequest(new ApiResponse<string>
+                {
+                    Success = false,
+                    Errors = new List<string> { errorMessage ?? "Nepavyko gauti grupės narių." }
+                });
+            }
+            
+            return Ok(new ApiResponse<List<GetUsersDTO>>
+            {
+                Success = true,
+                Data = users
             });
         }
 
