@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UniTask_backend.DTO;
+using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Services;
 
@@ -74,6 +75,27 @@ namespace UniTask_backend.Controllers
             {
                 Success = true,
                 Data = groups
+            });
+        }
+
+        [HttpGet("get-members/{groupId}")]
+        public IActionResult GetMembers(Guid groupId)
+        {
+            var (success, errorMessage, users) = _groupService.GetMembers(groupId);
+
+            if (!success)
+            {
+                return BadRequest(new ApiResponse<string>
+                {
+                    Success = false,
+                    Errors = new List<string> { errorMessage ?? "Nepavyko gauti grupės narių." }
+                });
+            }
+            
+            return Ok(new ApiResponse<List<GetUsersDTO>>
+            {
+                Success = true,
+                Data = users
             });
         }
 
