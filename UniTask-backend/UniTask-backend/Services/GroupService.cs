@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Npgsql.Replication.PgOutput.Messages;
+﻿using Microsoft.EntityFrameworkCore;
 using UniTask_backend.DTO;
 using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
@@ -16,25 +15,21 @@ namespace UniTask_backend.Services
             _context = context;
         }
 
-        public (bool Success, string? ErrorMessage, Guid? GroupId) CreateGroup(string name, Guid ownerId)
+        public async Task<(bool Success, string? ErrorMessage, Guid? GroupId)> CreateGroup(string name, Guid ownerId)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(name))
                     return (false, "Group name cannot be empty.", null);
 
-                // Sukuriame naują grupę
-                var newGroup = new Entities.Group(name, ownerId);
-
-                // Pirmiausia įrašome grupę, kad Id būtų patvirtintas
+                var newGroup = new Group(name, ownerId);
                 _context.Groups.Add(newGroup);
 
                 var membership = new GroupUser(ownerId, newGroup.Id);
                 _context.GroupUsers.Add(membership);
-                _context.SaveChanges();
-                return (true, null, newGroup.Id);
 
-           
+                await _context.SaveChangesAsync();
+                return (true, null, newGroup.Id);
             }
             catch (Exception ex)
             {
@@ -43,31 +38,26 @@ namespace UniTask_backend.Services
             }
         }
 
-        public (bool Success, string? ErrorMessage) AddMemberToGroup(Guid userId, Guid groupId)
+        public async Task<(bool Success, string? ErrorMessage)> AddMemberToGroup(Guid userId, Guid groupId)
         {
             try
             {
-                // Patikrinam, ar grupė egzistuoja
-                var groupExists = _context.Groups.Any(g => g.Id == groupId);
+                var groupExists = await _context.Groups.AnyAsync(g => g.Id == groupId);
                 if (!groupExists)
                     return (false, "Group not found.");
 
-                // Patikrinam, ar vartotojas egzistuoja
-                var userExists = _context.Users.Any(u => u.Id == userId);
+                var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
                 if (!userExists)
                     return (false, "User not found.");
 
-                // Patikrinam, ar vartotojas jau yra grupės narys
-                var membershipExists = _context.GroupUsers.Any(gu => gu.UserId == userId && gu.GroupId == groupId);
+                var membershipExists = await _context.GroupUsers.AnyAsync(gu => gu.UserId == userId && gu.GroupId == groupId);
                 if (membershipExists)
                     return (false, "User is already a member of the group.");
 
                 var membership = new GroupUser(userId, groupId);
                 _context.GroupUsers.Add(membership);
 
-                // Išsaugome narystės įrašą
-                _context.SaveChanges();
-
+                await _context.SaveChangesAsync();
                 return (true, null);
             }
             catch (Exception ex)
@@ -75,36 +65,27 @@ namespace UniTask_backend.Services
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
                 return (false, "Unable to add member: " + innerMessage);
             }
-        
-
         }
 
-        public (bool Success, string? ErrorMessage, List<GroupDTO> Groups) GetGroupsByUserId(Guid userId)
+        public async Task<(bool Success, string? ErrorMessage, List<GroupDTO> Groups)> GetGroupsByUserId(Guid userId)
         {
             try
             {
-                var groups = _context.Groups
+                var groups = await _context.Groups
                     .Where(g => g.Members.Any(m => m.UserId == userId))
                     .Select(g => new GroupDTO
                     {
                         Id = g.Id,
                         Name = g.Name
                     })
-                    .ToList();
-
-                if (groups is null)
-                {
-                    return (true, null, new List<GroupDTO>());
-                }
+                    .ToListAsync();
 
                 return (true, null, groups);
             }
             catch (Exception ex)
             {
-                // Optionally log ex.Message
-                return (false, "Unable to retrieve groups.", new List<GroupDTO>());
+                return (false, "Unable to retrieve groups: " + ex.Message, new List<GroupDTO>());
             }
         }
-
     }
 }

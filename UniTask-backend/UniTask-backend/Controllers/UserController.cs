@@ -22,7 +22,7 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("me")]
-    public IActionResult GetCurrentUser()
+    public async Task<IActionResult> GetCurrentUser()
     {
         var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
@@ -44,7 +44,7 @@ public class UserController : ControllerBase
             });
         }
 
-        var user = _userService.GetCurrentUser(userId);
+        var user = await _userService.GetCurrentUser(userId);
 
         if (user == null)
         {

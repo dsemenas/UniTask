@@ -17,11 +17,11 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpPost("create-group")]
-        public IActionResult AddGroup([FromBody] AddGroupDTO groupInfo)
+        public async Task<IActionResult> AddGroup([FromBody] AddGroupDTO groupInfo)
         {
             try
             {
-                var (success, errorMessage, groupId) = _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerId);
+                var (success, errorMessage, groupId) = await _groupService.CreateGroup(groupInfo.Name, groupInfo.OwnerId);
 
                 if (!success)
                     return BadRequest(new ApiResponse<string>
@@ -42,9 +42,9 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpPost("add-members")]
-        public IActionResult AddMembers([FromBody] AddMembersToGroupRequest request)
+        public async Task<IActionResult> AddMembers([FromBody] AddMembersToGroupRequest request)
         {
-            var (success, error) =  _groupService.AddMemberToGroup(request.UserId, request.GroupId);
+            var (success, error) = await _groupService.AddMemberToGroup(request.UserId, request.GroupId);
 
             if (!success)
                 return BadRequest(new ApiResponse<string>
@@ -55,9 +55,9 @@ namespace UniTask_backend.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public IActionResult GetGroupsByUserId(Guid userId)
+        public async Task<IActionResult> GetGroupsByUserId(Guid userId)
         {
-            var (success, errorMessage, groups) = _groupService.GetGroupsByUserId(userId);
+            var (success, errorMessage, groups) = await _groupService.GetGroupsByUserId(userId);
 
             if (!success)
             {
