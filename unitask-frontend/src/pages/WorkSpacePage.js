@@ -107,7 +107,11 @@ export default function WorkSpacePage() {
             {data.length != 0 ? (
               data.map((d, i) => (
                 <li className="list-group-item" key={i}>
-                  <Link to={`/group/${d.id}`}>{d.name}</Link>
+                  <Link
+                    to={`/group/${d.id}?name=${encodeURIComponent(d.name)}`}
+                  >
+                    {d.name}
+                  </Link>
                 </li>
               ))
             ) : (
