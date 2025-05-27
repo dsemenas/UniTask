@@ -25,11 +25,11 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public IActionResult Register([FromBody] UserRegisterDTO userInfo)
+    public async Task<IActionResult> Register([FromBody] UserRegisterDTO userInfo)
     {
         try
         {
-            var (success, errorMessage, userId) = _authService.RegisterUser(userInfo.Username, userInfo.Password);
+            var (success, errorMessage, userId) = await _authService.RegisterUser(userInfo.Username, userInfo.Password);
 
             if (!success)
                 return BadRequest(new ApiResponse<string> 
@@ -49,11 +49,11 @@ public class AuthController : ControllerBase
     }
     
     [HttpPost("login")]
-    public IActionResult Login([FromBody] UserLoginDTO loginDto)
+    public async Task<IActionResult> Login([FromBody] UserLoginDTO loginDto)
     {
         try
         {
-            var user = _authService.AuthenticateUser(loginDto.Username, loginDto.Password);
+            var user = await _authService.AuthenticateUser(loginDto.Username, loginDto.Password);
 
             if (user == null)
             {

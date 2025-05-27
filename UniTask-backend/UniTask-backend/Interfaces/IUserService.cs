@@ -4,5 +4,5 @@ namespace UniTask_backend.Interfaces;
 
 public interface IUserService
 {
-    User? GetCurrentUser(Guid userId);
+    Task<User?> GetCurrentUser(Guid userId);
 }

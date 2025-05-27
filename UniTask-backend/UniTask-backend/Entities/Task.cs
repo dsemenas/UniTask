@@ -2,17 +2,20 @@
 {
     public class Task
     {
-        public Task(string name, string description, Guid userId, TaskStatus status)
+        public Task(string description, Guid groupId, Guid userId, TaskStatus status)
         {
-            Name = name;
             Description = description;
+            GroupId = groupId;
             UserId = userId;
             Status = status;
         }
 
         public Guid Id { get; set; } = Guid.NewGuid();
-        public string Name { get; set; }
         public string Description { get; set; }
+
+        public Guid GroupId { get; set; }
+
+        public Group? Group { get; set; }
 
         public Guid UserId{ get; set; }
 

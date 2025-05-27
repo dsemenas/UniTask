@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace UniTask_backend.Services;
 
@@ -15,8 +16,8 @@ public class AuthService : IAuthService
         _context = context;
         _passwordHasher = passwordHasher;
     }
-    
-    public (bool Success, string? ErrorMessage, Guid? UserId) RegisterUser(string username, string password)
+
+    public async Task<(bool Success, string? ErrorMessage, Guid? UserId)> RegisterUser(string username, string password)
     {
         // Username validation: atleast 4 symbols
         if (string.IsNullOrWhiteSpace(username) || username.Length < 4)
@@ -30,7 +31,7 @@ public class AuthService : IAuthService
         if (!password.Any(char.IsLetter) || !password.Any(char.IsDigit))
             return (false, "Password must contain at least one letter and one digit.", null);
 
-        var existingUser = _context.Users.SingleOrDefault(u => u.Username == username);
+        var existingUser = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
         if (existingUser != null)
             return (false, "User already exists.", null);
 
@@ -42,15 +43,15 @@ public class AuthService : IAuthService
             PasswordHash = hashedPassword
         };
 
-        _context.Users.Add(user);
-        _context.SaveChanges();
+        await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
 
         return (true, null, user.Id);
     }
-    
-    public User? AuthenticateUser(string username, string password)
+
+    public async Task<User?> AuthenticateUser(string username, string password)
     {
-        var user = _context.Users.SingleOrDefault(u => u.Username == username);
+        var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
         if (user == null)
             return null;
 
