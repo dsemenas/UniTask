@@ -49,7 +49,7 @@ namespace UniTask_backend.Controllers
             }
         }
 
-        [HttpGet("tasks/{groupId}")]
+        [HttpGet("all-tasks/{groupId}")]
         public async Task<IActionResult> GetTasks(Guid groupId)
         {
             try
@@ -65,7 +65,7 @@ namespace UniTask_backend.Controllers
                     });
                 }
 
-                return Ok(new ApiResponse<List<Entities.Task>>
+                return Ok(new ApiResponse<List<GetAllTasksDTO>>
                 {
                     Success = true,
                     Data = result.tasks

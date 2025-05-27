@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
-export default function MemberAddForm({ token, groupId }) {
+export default function MemberAddForm({
+  token,
+  groupId,
+  handleMemberFormSubmit,
+}) {
   const [name, setName] = useState("");
 
   const handlePost = (e) => {
     e.preventDefault();
+    handleMemberFormSubmit();
     fetch("http://localhost:5159/api/Group/add-members", {
       method: "POST",
       headers: {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UniTask_backend.DTO;
 using UniTask_backend.Entities;
 using UniTask_backend.Interfaces;
 using UniTask_backend.Persistence;
@@ -42,15 +43,25 @@ namespace UniTask_backend.Services
                 return (false, "Unable to create task: " + innerMessage, null);
             }
         }
-        public async Task<(bool Success, string? ErrorMessage, List<Entities.Task>? tasks)> GetTasks(Guid groupId)
+        public async Task<(bool Success, string? ErrorMessage, List<GetAllTasksDTO>? tasks)> GetTasks(Guid groupId)
         {
             try
             {
                 var tasks = await _context.Tasks
                     .Where(t => t.GroupId == groupId)
+                    .Include(t => t.User)
                     .ToListAsync();
+                
+                var tasksInfo = tasks.Select(t => new GetAllTasksDTO
+                {
+                    Id = t.Id,
+                    Description = t.Description,
+                    AssignedTo = t.User.Username,
+                    Version = t.Version,
+                    Status = t.Status
+                }).ToList();
 
-                return (true, null, tasks);
+                return (true, null, tasksInfo);
             }
             catch (Exception)
             {

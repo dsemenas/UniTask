@@ -1,10 +1,12 @@
-﻿namespace UniTask_backend.Interfaces
+﻿using UniTask_backend.DTO;
+
+namespace UniTask_backend.Interfaces
 {
     public interface ITaskService
     {
         Task<(bool Success, string? ErrorMessage, Guid? TaskId)> CreateTask(string description, Guid groupId, string username, TaskStatus status);
 
-        Task<(bool Success, string? ErrorMessage, List<Entities.Task>? tasks)> GetTasks(Guid groupId);
+        Task<(bool Success, string? ErrorMessage, List<GetAllTasksDTO>? tasks)> GetTasks(Guid groupId);
 
         Task<(bool Success, string? ErrorMessage)> AssignMemberToTask(Guid userId, Guid taskId);
 

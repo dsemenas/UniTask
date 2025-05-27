@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-export default function MembersList({ token, groupId }) {
+export default function MembersList({
+  token,
+  groupId,
+  setShouldFetchMembers,
+  shouldFetchMembers,
+}) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    if (shouldFetchMembers) {
+      fetchData();
+      setShouldFetchMembers(false);
+    }
     fetchData();
-  }, []);
+  }, [shouldFetchMembers, setShouldFetchMembers]);
 
   const fetchData = async () => {
     try {
