@@ -32,7 +32,7 @@ export default function WorkSpacePage() {
 
     try {
       const response = await fetch(
-        "http://localhost:5159/api/Group/create-group",
+        "https://localhost:7084/api/Group/create-group",
         {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ export default function WorkSpacePage() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5159/api/Group/user/${user.id}`,
+        `https://localhost:7084/api/Group/user/${user.id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -88,6 +88,35 @@ export default function WorkSpacePage() {
       console.log(err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const deleteGroup = async (groupId) => {
+    if (!window.confirm("Ar tikrai norite ištrinti šią grupę?")) return;
+
+    try {
+      const response = await fetch(
+        `https://localhost:7084/api/Group?groupId=${groupId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        setSuccessMessage("Grupė sėkmingai ištrinta.");
+        setTimeout(() => setSuccessMessage(null), 3000);
+        fetchData(); // atnaujina sąrašą
+      } else {
+        const errorData = await response.json();
+        setErrors(errorData.errors || ["Nepavyko ištrinti grupės."]);
+      }
+    } catch (err) {
+      console.error(err);
+      setErrors(["Tinklo klaida, bandykite dar kartą..."]);
     }
   };
 
@@ -112,6 +141,12 @@ export default function WorkSpacePage() {
                   >
                     {d.name}
                   </Link>
+                  <button
+                    class="btn btn-secondary"
+                    onClick={() => deleteGroup(d.id)}
+                  >
+                    Ištrinti
+                  </button>
                 </li>
               ))
             ) : (

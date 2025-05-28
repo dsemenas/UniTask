@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.Replication.PgOutput.Messages;
 using UniTask_backend.DTO;
@@ -121,6 +122,26 @@ namespace UniTask_backend.Services
             {
                 // Optionally log ex.Message
                 return (false, "Unable to retrieve members.", new List<GetUsersDTO>());
+            }
+        }
+
+        public async Task<(bool Success, string? ErrorMessage)> DeleteGroup(Guid groupId)
+        {
+            try
+            {
+                var group = await _context.Groups.FindAsync(groupId);
+                if (group == null)
+                    return (false, "Group not found.");
+
+                _context.Groups.Remove(group);
+                await _context.SaveChangesAsync();
+
+                return (true, null);
+            }
+            catch (Exception ex)
+            {
+                var innerMessage = ex.InnerException?.Message ?? ex.Message;
+                return (false, "Unable to delete task: " + innerMessage);
             }
         }
 
