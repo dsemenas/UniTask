@@ -135,14 +135,17 @@ export default function WorkSpacePage() {
           <ul className="list-group list-group-flush mt-3 fs-5 w-25">
             {data.length != 0 ? (
               data.map((d, i) => (
-                <li className="list-group-item" key={i}>
+                <li
+                  className="list-group-item align-items-center justify-content-between"
+                  key={i}
+                >
                   <Link
                     to={`/group/${d.id}?name=${encodeURIComponent(d.name)}`}
                   >
                     {d.name}
                   </Link>
                   <button
-                    class="btn btn-secondary"
+                    class="btn btn-secondary ms-3"
                     onClick={() => deleteGroup(d.id)}
                   >
                     Ištrinti
