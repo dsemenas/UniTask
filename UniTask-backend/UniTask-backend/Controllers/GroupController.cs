@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UniTask_backend.DTO;
 using UniTask_backend.Entities;
@@ -97,6 +98,37 @@ namespace UniTask_backend.Controllers
                 Success = true,
                 Data = users
             });
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteGroup(Guid groupId)
+        {
+            try
+            {
+                var result = await _groupService.DeleteGroup(groupId);
+
+                if (!result.Success)
+                {
+                    return NotFound(new ApiResponse<string>
+                    {
+                        Success = false,
+                        Errors = new List<string> { result.ErrorMessage ?? "Unknown error." }
+                    });
+                }
+
+                return Ok(new ApiResponse<string>
+                {
+                    Success = true
+                });
+            }
+            catch
+            {
+                return StatusCode(500, new ApiResponse<string>
+                {
+                    Success = false,
+                    Errors = new List<string> { "Internal server error occurred." }
+                });
+            }
         }
 
     }
